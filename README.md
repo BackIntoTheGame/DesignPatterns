@@ -23,3 +23,39 @@ SOLID Principles:
     
   => Dependency Inversion Principle:
     --> Hign-level modules should not depend upon low-level ones; use abstractions(interfaces/ abstract classes. )
+
+
+<section>
+Gamma Categorization
+<ol>
+  <li>Design Patterns are typicallly split into three categories, which is caaled Gamma Categorization. 
+  </li>
+  <li>
+    Creational Patterns
+    <ul>
+      <li>Deal with the creation (construction) of objects.</li>
+      <li>Explicit (constructor) vs. implicit (DI, reflection, etc)</li>
+      <li>Wholesale (single statement) vs. piecewise (step-by-step)</li> 
+    </ul>
+  </li>
+  <li>
+    Structural Patterns
+    <ul>
+      <li>Concerned with the structure. (e.g., class members)</li>
+      <li>Many patterns are wrappers that mimic the underlying class's interface. </li>
+      <li>Stress the importance of good API design. </li> 
+    </ul>
+  </li>
+  
+  <li>
+    Behavioral Patterns
+    <ul>
+      <li>They are all different; no central theme. </li>
+    </ul>
+  </li>
+  </ol>
+  </section>
+  
+  <section>
+  Builder: When piecewise object construction is complicated, provide an API for doing it succinctly. 
+  </section>
