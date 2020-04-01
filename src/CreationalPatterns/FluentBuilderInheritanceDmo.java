@@ -3,6 +3,10 @@ package CreationalPatterns;
 /*** if you want a fluent builder to propagate
  * across inheritance hierarchy, you need to
  * have recursive generic definitions.
+ *
+ * Answer: give them a common Builder, switch to
+ * different builder by method calls, thereby maintaining
+ * a fluent builder mechanism.
  */
 public class FluentBuilderInheritanceDmo {
     public static void main(String[] args) {
