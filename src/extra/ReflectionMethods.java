@@ -3,7 +3,7 @@ package extra;
 import java.lang.reflect.*;
 
 public class ReflectionMethods {
-    private double d;
+    public double d;
     public static final int i = 37;
     String s = "testing";
 
@@ -13,6 +13,12 @@ public class ReflectionMethods {
 
     protected ReflectionMethods(int i, double d)
     {
+    }
+
+    public ReflectionMethods(int a, int b)
+    {
+        System.out.println(
+                "a = " + a + " b = " + b);
     }
     public static void main(String args[])
     {
@@ -143,14 +149,71 @@ public class ReflectionMethods {
         catch (Throwable e) {
             System.err.println(e);
         }
-        System.out.println(" \n refer to: https://www.oracle.com/technical-resources/articles/java/javareflection.html  \n ");
 
         System.out.println(" \n  **Creating New Objects**  \n ");
-        System.out.println(" \n  **Invoking Methods by Name**  \n ");
-        System.out.println(" \n  **Invoking Methods by Name**  \n ");
+        try {
+            Class cls = Class.forName("extra.ReflectionMethods");
+            Class partypes[] = new Class[2];
+            partypes[0] = Integer.TYPE;
+            partypes[1] = Integer.TYPE;
+            Constructor ct = cls.getConstructor(partypes);
+            Object arglist[] = new Object[2];
+            arglist[0] = 37;
+            arglist[1] = 47;
+            Object retobj = ct.newInstance(arglist);
+
+            System.out.println("A new object is created - " + retobj.toString());
+        }
+        catch (Throwable e) {
+            System.err.println(e);
+        }
 
 
+        System.out.println(" \n  **Changing Values of Fields**  \n ");
+        try {
+            Class cls = Class.forName("extra.ReflectionMethods");
+
+            Field fld = cls.getField("d");
+            ReflectionMethods f2obj = new ReflectionMethods();
+            System.out.println("d = " + f2obj.d);
+            fld.setDouble(f2obj, 12.34);
+            System.out.println("d = " + f2obj.d);
+        }
+        catch (Throwable e) {
+            System.err.println(e);
+        }
+
+        System.out.println(" \n  **Using Arrays**  \n ");
+        try {
+            Class cls = Class.forName(
+                    "java.lang.String");
+            Object arr = Array.newInstance(cls, 10);
+            Array.set(arr, 5, "this is a test");
+            String s = (String)Array.get(arr, 5);
+            System.out.println(s);
+        }
+        catch (Throwable e) {
+            System.err.println(e);
+        }
+
+        int dims[] = new int[]{5, 10, 15};
+        Object arr
+                = Array.newInstance(Integer.TYPE, dims);
+
+        Object arrobj = Array.get(arr, 3);
+        Class cls =
+                arrobj.getClass().getComponentType();
+        System.out.println(cls);
+        arrobj = Array.get(arrobj, 5);
+        Array.setInt(arrobj, 10, 37);
+
+        int arrcast[][][] = (int[][][])arr;
+        System.out.println(arrcast[3][5][10]);
+
+
+        System.out.println(" \n refer to: https://www.oracle.com/technical-resources/articles/java/javareflection.html  \n ");
     }
+
 
     private int f1(
             Object p, int x) throws NullPointerException
